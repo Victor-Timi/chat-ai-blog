@@ -24,26 +24,26 @@ const Article = ({
     return null;
   }
 
-  const postAiContent = async () => {
-    editor
-      .chain()
-      .focus()
-      .setContent("Generating Ai Content. Please Wait...")
-      .run();
+  // const postAiContent = async () => {
+  //   editor
+  //     .chain()
+  //     .focus()
+  //     .setContent("Generating Ai Content. Please Wait...")
+  //     .run();
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        role: role,
-      }),
-    });
-    const data = await response.json();
+  //   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       title: title,
+  //       role: role,
+  //     }),
+  //   });
+  //   const data = await response.json();
 
-    editor.chain().focus().setContent(data.content).run();
-    setContent(data.content);
-  };
+  //   editor.chain().focus().setContent(data.content).run();
+  //   setContent(data.content);
+  // };
 
   return (
     <article className="text-wh-500 leading-8">
@@ -59,7 +59,7 @@ const Article = ({
               onChange={(e) => setRole(e.target.value)}
               value={role}
             />
-            <button type="button" onClick={postAiContent}>
+            <button type="button">
               <RocketLaunchIcon className="h-8 w-8 text-accent-orange hover:text-wh-300" />
             </button>
           </div>
